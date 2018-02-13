@@ -1,6 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 import { sendUserMessage, sendCompMessage, clearChat, sendSystemMessage } from './thunkfunction';
 import TextField from 'material-ui/TextField';
 import Resources from './resources';
@@ -17,6 +18,9 @@ class ChatInput extends React.Component {
         super(props);
         this.keyPressHandler = this.keyPressHandler.bind(this);
         this.clickHandler = this.clickHandler.bind(this);
+        this.state = {
+            disableTextField: false
+        }
     }
 
     componentWillMount() {
@@ -30,6 +34,11 @@ class ChatInput extends React.Component {
             this.props.sendCompMessage(Resources.MESSAGE2);
             setTimeout(() => {
                 this.props.sendSystemMessage(Resources.MESSAGE3);
+                this.disableTextField();
+                setTimeout(() => {
+                    console.log('Close window')
+                    this.closeWindow()
+                }, 2500)
             }, 3000)
             clearInterval(this.intervalFcn);
         }, 10000)
@@ -41,8 +50,19 @@ class ChatInput extends React.Component {
         }
     }
 
+    closeWindow() {
+        this.props.history.push("/root");
+    }
+
+    disableTextField() {
+        this.setState({
+            disableTextField: true
+        })
+    }
+
     clickHandler() {
-        this.sendMessageFcn();
+        if (!this.state.disableTextField)
+            this.sendMessageFcn();
     }
 
     sendMessageFcn() {
@@ -55,6 +75,11 @@ class ChatInput extends React.Component {
             }, 4000)
             setTimeout(() => {
                 this.props.sendSystemMessage(Resources.MESSAGE3);
+                this.disableTextField();
+                setTimeout(() => {
+                    console.log('Close window')
+                    this.closeWindow()
+                }, 2500)
             }, 7000)
         }
     }
@@ -63,7 +88,7 @@ class ChatInput extends React.Component {
         return (
             <div className="chat-input">
                 Enter Message:
-                <input className="chat-input-field" ref={c => this.text = c} onKeyPress={this.keyPressHandler} />
+                <input disabled={this.state.disableTextField} className="chat-input-field" ref={c => this.text = c} onKeyPress={this.keyPressHandler} />
                 <RaisedButton onClick={this.clickHandler} label="Send" style={{ marginLeft: 10 }} />
                 {/* <TextField  className="chat-input-field" ref={c => this.text = c} onKeyPress={this.keyPressHandler} /> */}
             </div>
@@ -84,4 +109,4 @@ function mapDispathToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispathToProps)(ChatInput);
+export default withRouter(connect(mapStateToProps, mapDispathToProps)(ChatInput));

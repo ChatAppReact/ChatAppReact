@@ -5,7 +5,7 @@ import './index.css';
 import App from './App';
 import FirstPage from './FirstPage';
 import ChatContainer from './ChatContainer';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -19,9 +19,9 @@ const router = (
     <MuiThemeProvider>
         <Router>
             <div>
-                <Route path="/" component={App} />
-                <Route path="/root" component={FirstPage} />
-                <Route path="/chat" component={ChatContainer} />
+                <Route exact path="/" component={App} />
+                <Route exact path="/root" component={FirstPage} />
+                <Route exact path="/chat" component={ChatContainer} />
             </div>
         </Router>
     </MuiThemeProvider>
@@ -40,4 +40,4 @@ const store = createStore(reducer, applyMiddleware(thunk));
 const provider = <Provider store={store}>{router}</Provider>;
 
 ReactDOM.render(provider, document.getElementById('root'));
-registerServiceWorker();
+// registerServiceWorker();
