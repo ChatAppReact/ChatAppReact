@@ -38,6 +38,7 @@ class ChatInput extends React.Component {
                 setTimeout(() => {
                     console.log('Close window')
                     this.closeWindow()
+                    // window.close();
                 }, 2500)
             }, 3000)
             clearInterval(this.intervalFcn);
@@ -51,7 +52,7 @@ class ChatInput extends React.Component {
     }
 
     closeWindow() {
-        this.props.history.push("/root");
+        this.props.history.push("/ended");
     }
 
     disableTextField() {
@@ -79,6 +80,7 @@ class ChatInput extends React.Component {
                 setTimeout(() => {
                     console.log('Close window')
                     this.closeWindow()
+                    // window.close();
                 }, 2500)
             }, 7000)
         }

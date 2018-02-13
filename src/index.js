@@ -13,6 +13,7 @@ import chatApp from './reducer';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import ChatEnded from './ChatEnded';
 
 
 const router = (
@@ -23,6 +24,7 @@ const router = (
                 <Route exact path="/" component={App} />
                 <Route exact path="/root" component={FirstPage} />
                 <Route exact path="/chat" component={ChatContainer} />
+                <Route exact path="/ended" component={ChatEnded} />
             </div>
         </HashRouter>
         {/* </Router> */}
