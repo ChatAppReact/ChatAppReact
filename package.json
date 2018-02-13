@@ -23,5 +23,5 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -b master -d build"
   },
-  "homepage": "https://chatappreact.github.io/ChatAppReact/"
+  "homepage": "https://chatappreact.github.io/"
 }
