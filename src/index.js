@@ -6,7 +6,7 @@ import App from './App';
 import FirstPage from './FirstPage';
 import ChatContainer from './ChatContainer';
 // import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, HashRouter } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import chatApp from './reducer';
@@ -17,13 +17,15 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const router = (
     <MuiThemeProvider>
-        <Router>
+        {/* <Router> */}
+        <HashRouter>
             <div>
                 <Route exact path="/" component={App} />
                 <Route exact path="/root" component={FirstPage} />
                 <Route exact path="/chat" component={ChatContainer} />
             </div>
-        </Router>
+        </HashRouter>
+        {/* </Router> */}
     </MuiThemeProvider>
 );
 
